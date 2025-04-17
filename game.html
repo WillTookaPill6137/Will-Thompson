@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Ocean Riddle Generator</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: linear-gradient(to bottom right, #001f3f, #0077be);
+      font-family: 'Segoe UI', sans-serif;
+      color: #ffffff;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 40px;
+    }
+
+    .container {
+      background-color: rgba(0, 0, 50, 0.85);
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+      padding: 40px 30px;
+      width: 100%;
+      max-width: 600px;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 2.8em;
+      margin-bottom: 20px;
+      color: #00ffff;
+      text-shadow: 0 0 8px rgba(0, 255, 255, 0.6);
+    }
+
+    #riddle {
+      font-size: 1.3em;
+      margin: 20px 0;
+    }
+
+    #answer {
+      margin-top: 15px;
+      font-size: 1.2em;
+      color: #00ffff;
+      display: none;
+      font-weight: bold;
+    }
+
+    .button-row {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    button {
+      background-color: #00ffff;
+      color: #001f3f;
+      border: none;
+      border-radius: 8px;
+      padding: 12px 20px;
+      font-size: 1em;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #00d9d9;
+      transform: scale(1.05);
+    }
+
+    a {
+      display: inline-block;
+      margin-top: 30px;
+      color: #00ffff;
+      text-decoration: none;
+      font-size: 0.95em;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>🐙 Ocean Riddle Game 🌊</h1>
+
+    <div id="riddle">Click the button to get your first riddle!</div>
+    <div id="answer"></div>
+
+    <div class="button-row">
+      <button onclick="generateRiddle()">New Riddle</button>
+      <button onclick="showAnswer()">Reveal Answer</button>
+    </div>
+
+    <a href="scratch.html">← Back to Scratch Page</a>
+  </div>
+
+  <script>
+    const riddles = [
+      {
+        question: "I glide through the sea, not a bird but I fly, with wings like a kite and a sting in my thigh. What am I?",
+        answer: "A stingray"
+      },
+      {
+        question: "I’m the biggest of all, and I sing deep and loud. My heart’s the size of a car, and I blow air like a cloud. What am I?",
+        answer: "A blue whale"
+      },
+      {
+        question: "I have no bones, no spine in my back, eight limbs I move with, and I’m clever to hack. What am I?",
+        answer: "An octopus"
+      },
+      {
+        question: "I wear a shell on my back, I swim in the sea, I’m ancient and wise, and a slowpoke, that’s me!",
+        answer: "A sea turtle"
+      },
+      {
+        question: "I look like a flower but I sting like a bee. If you touch my tentacles, you won’t swim with glee. What am I?",
+        answer: "A jellyfish"
+      }
+    ];
+
+    let currentIndex = -1;
+
+    function generateRiddle() {
+      let index;
+      do {
+        index = Math.floor(Math.random() * riddles.length);
+      } while (index === currentIndex); // Prevent repeating the same one
+      currentIndex = index;
+
+      document.getElementById("riddle").textContent = riddles[index].question;
+      document.getElementById("answer").textContent = riddles[index].answer;
+      document.getElementById("answer").style.display = "none";
+    }
+
+    function showAnswer() {
+      if (currentIndex !== -1) {
+        document.getElementById("answer").style.display = "block";
+      }
+    }
+  </script>
+
+</body>
+</html>
